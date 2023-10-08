@@ -1,0 +1,170 @@
+body, h1, p, a, img {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter;
+  /* background-image: url('../imgs/back.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+  overflow-x: hidden;
+  background: #000;
+}
+
+header {
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  text-align: center;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  height: 20vh;
+}
+
+canvas{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -9999;
+}
+
+.logo img {
+  max-width: 150px;
+}
+.logo{
+  max-width: 1800px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-text{
+  margin: 0;
+}
+
+h1 {
+  font-size: 36px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+main {
+  text-align: center;
+  padding: 40px 0;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.intro-text {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.cta-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 50%;
+}
+
+.main-button {
+  display: flex;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 5px 10px;
+  font-size: 18px;
+  width: 200px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px 0 #fff;
+  font-family: 'Public Sans', sans-serif;
+}
+
+.main-button:hover {
+  background-color: #33333388;
+}
+
+footer {
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  width: auto;
+  left: 0;
+  bottom: 0;
+}
+
+footer p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.message{
+  font-size: 1.4em;
+  width: 70%;
+  margin: 0 auto;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 800;
+}
+
+.quest-input{
+  height: 30px;
+  width: 400px;
+  background: #3330;
+  border: solid 1px #fff;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.1em;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 400;
+}
+
+.quest-div{
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quest-submit{
+  height: 34px;
+  width: 34px;
+  margin-left: 10px;
+  background: #3330;
+  border: solid 1px #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quest-submit:hover {
+  background-color: #33333388;
+}
+
+@media screen and (max-width: 576px){
+  .logo-text{
+    font-size: 1.6em;
+  }
+  .quest-input{
+    width: 280px;
+  }
+  footer{
+    padding: 5px;
+  }
+  .main-button{
+    width: 260px;
+  }
+  .message{
+    width: 95%;
+  }
+  footer p {
+    font-size: 10px;
+  }
+}

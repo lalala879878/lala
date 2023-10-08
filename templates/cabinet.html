@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UserFeed</title>
+
+  <link rel="stylesheet" href="static/css/cabinet.css">
+  <link rel="stylesheet" href="static/css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;800&display=swap" rel="stylesheet">
+</head>
+<body style="height: 100%;">
+  <canvas id="myCanvas" width="640" height="480"></canvas>
+  <header>
+    <div class="logo">
+      <img src="static/imgs/logo.webp" alt="Your Logo">
+      <h1 class="logo-text">Hi! I'm your best AI Space assistant</h1>
+    </div>
+  </header>
+    <table>
+      <thead>
+        <tr>
+          <th>Document Number</th>
+          <th>Version</th>
+          <th>Title</th>
+          <th>Document Date</th>
+          <th>Change Number</th>
+          <th>Change Date</th>
+          <th>Revalidation Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in table_data %}
+          <tr>
+            {% for cell in row %}
+              <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  <footer style="bottom: auto;">
+    <p>
+      This application is an AI-integrated database that contains the most up-to-date information and database of NASA standards, updated from all global sources in real time, validated by NASA experts and their recommendations. You may keep your aerospace flight safe by connecting this application to your AI-guided vehicle and the AI devices on it.
+    </p>
+  </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.3.1/gl-matrix-min.js"></script>
+<script src="static/js/main.js"></script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>Your NASA Standards AI Web System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="myCanvas" width="640" height="480"></canvas>
+  <header>
+      <div class="logo">
+          <img src="static/imgs/logo.webp" alt="Your Logo">
+          <h1 class="logo-text">Hi! I'm your best AI Space assistant</h1>
+      </div>
+  </header>
+  <main>
+    <section class="intro-text">
+      <h1 id="message" class="message"></h1>
+      <div class='quest-div'>
+        <input placeholder="Write your question..." id="quest" class="quest-input" type="text">
+        <button class="quest-submit" onclick="sendQuest()" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-sm m-1 md:m-0" style="width: 20px; color: #ddd;"><path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path></svg>
+        </button>
+      </div>
+    </section>
+    <section class="cta-buttons">
+        <a href="/nasa_cabinet" class="main-button">Log in NASA</a>
+        <a href="/login" class="main-button">Log in</a>
+        <a href="/login" class="main-button">Sign up</a>
+    </section>
+  </main>
+  <footer>
+    <p>
+      This application is an AI-integrated database that contains the most up-to-date information and database of NASA standards, updated from all global sources in real time, validated by NASA experts and their recommendations. You may keep your aerospace flight safe by connecting this application to your AI-guided vehicle and the AI devices on it.
+    </p>
+  </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.3.1/gl-matrix-min.js"></script>
+<script src="static/js/main.js"></script>
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+<script>
+  var typed = new Typed('.message', {
+    strings: ['{{message}}'],
+    typeSpeed: 20,
+    showCursor: false
+  });
+  function sendQuest(){
+    quest = document.getElementById('quest')
+    fetch('/quest', {
+      method: 'POST',
+      body: JSON.stringify({ text: quest.value }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+        message = data.received_text
+      console.log(data.received_text)
+      document.getElementById('message').textContent = ''
+      quest.value = ''
+      var typed = new Typed('.message', {
+        strings: [message],
+        typeSpeed: 20,
+        showCursor: false
+      });
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
+  }
+  const charCount = document.getElementById('message').length;
+  if (charCount < 20) {
+    document.getElementById('message').style.fontSize = '1.4em';
+  } else if (charCount < 50) {
+    document.getElementById('message').style.fontSize = '1.2em';
+  } else {
+    document.getElementById('message').style.fontSize = '1em';
+  }
+</script>
+</html>

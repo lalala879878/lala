@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NASA Cabinet</title>
+
+  <link rel="stylesheet" href="static/css/cabinet.css">
+  <link rel="stylesheet" href="static/css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;800&display=swap" rel="stylesheet">
+</head>
+<body style="height: 100%;">
+  <canvas id="myCanvas" width="640" height="480"></canvas>
+  <header>
+    <div class="logo">
+      <img src="static/imgs/logo.webp" alt="Your Logo">
+      <h1 class="logo-text">Hi! I'm your best AI Space assistant</h1>
+    </div>
+  </header>
+  <div class="colors">
+    <div class="color-div"><span class="color cell-color-green"></span><h3>Accepted</h3></div>
+    <div class="color-div"><span class="color cell-color-blue"></span><h3>Under consideration</h3></div>
+    <div class="color-div"><span class="color cell-color-red"></span><h3>Processing</h3></div>
+  </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Systems Engineering and Integration, Aerospace Environments, Celestial Mechanics</th>
+          <th>Computer Systems, Software, Information Systems</th>
+          <th>Human Factors and Health</th>
+          <th>Electrical and Electronics Systems,  Avionics/Control Systems, Optics</th>
+          <th>Structures/Mechanical Systems, Fluid Dynamics, Thermal, Propulsion, Aerodynamics</th>
+          <th>Materials and Processes, Parts</th>
+          <th>System and Subsystem Test, Analysis, Modeling, Evaluation</th>
+          <th>Safety, Quality, Reliability, Maintainability</th>
+          <th>Construction and Institutional Support</th>
+          <th>Operations, Command, Control, Telemetry/Data Systems, Communications</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in column_data %}
+          <tr>
+            {% for data in row %}
+              <td>
+                {% if data.link %}
+                  <a href="{{ data.link }}" target="_blank">{{ data.text|safe }}</a>
+                {% else %}
+                  {{ data.text|safe }}
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  <footer style="bottom: auto;">
+    <p>
+      This application is an AI-integrated database that contains the most up-to-date information and database of NASA standards, updated from all global sources in real time, validated by NASA experts and their recommendations. You may keep your aerospace flight safe by connecting this application to your AI-guided vehicle and the AI devices on it.
+    </p>
+  </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.3.1/gl-matrix-min.js"></script>
+<script src="static/js/main.js"></script>
+<script>
+  function randomizeCellColors() {
+      const cellElements = document.querySelectorAll('td'); // Выберите все ячейки в таблице
+  
+      cellElements.forEach(function(cell) {
+          const randomColorClass = getRandomColorClass(); // Получите случайный класс цвета
+          cell.classList.add(randomColorClass); // Добавьте класс цвета к ячейке
+      });
+  }
+  
+  function getRandomColorClass() {
+      const colorClasses = ['cell-color-red', 'cell-color-blue', 'cell-color-green']; // Список классов цветов
+      const randomIndex = Math.floor(Math.random() * colorClasses.length); // Генерируйте случайный индекс
+      return colorClasses[randomIndex]; // Возвращайте случайный класс цвета
+  }
+  
+  // Вызовите функцию для рандомизации цветов после загрузки страницы
+  window.addEventListener('load', randomizeCellColors);
+
+</script>
+<style>
+    table {
+        border-collapse: collapse; /* Объединяет грани ячеек для создания расстояния между столбцами */
+        width: 100%; /* Ширина таблицы на 100% от родительского элемента */
+    }
+    td:empty {
+      display: none;
+    }
+
+  .cell-color-red {
+    background-color: #a56100;
+  }
+  
+  .cell-color-blue {
+    background-color: #3a3a93;
+  }
+  
+  .cell-color-green {
+    background-color: #398100;
+  }
+  a{
+    color: #fff;
+    font-size: 0.8em;
+  }
+  .color{
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+  }
+  .colors{
+    display: flex;
+  }
+  .color-div{
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+</html>
